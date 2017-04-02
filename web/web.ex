@@ -52,6 +52,8 @@ defmodule Curator.Web do
       import Curator.Router.Helpers
       import Curator.ErrorHelpers
       import Curator.Gettext
+
+      import Curator.Session, only: [current_user: 1, signed_in?: 1]
     end
   end
 

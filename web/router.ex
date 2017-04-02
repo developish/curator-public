@@ -18,6 +18,9 @@ defmodule Curator.Router do
 
     get "/", PageController, :index
     resources "/registrations", RegistrationController, only: [:new, :create]
+    get "/signin", SessionController, :new
+    post "/signin", SessionController, :create
+    delete "/signout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

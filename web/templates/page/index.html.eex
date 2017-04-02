@@ -4,5 +4,11 @@
 </div>
 
 <div class="text-center">
-  <%= link "Register", to: registration_path(@conn, :new), class: "btn btn-primary" %>
+  <%= if signed_in?(@conn) do %>
+    Signed in as: <%= current_user(@conn).email %>.
+    <%= link "Sign out", to: session_path(@conn, :delete), method: :delete %>
+  <% else %>
+    <%= link "Register", to: registration_path(@conn, :new), class: "btn btn-primary" %>
+    <%= link "Sign in", to: session_path(@conn, :new), class: "btn btn-primary" %>
+  <% end %>
 </div>

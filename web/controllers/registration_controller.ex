@@ -12,8 +12,10 @@ defmodule Curator.RegistrationController do
     changeset = User.changeset(%User{}, registration_params)
 
     case Repo.insert(changeset) do
-      { :ok, _changeset } ->
-        render conn, :thanks
+      { :ok, changeset } ->
+        conn
+        |> put_session(:user_id, changeset.id)
+        |> redirect(to: "/")
       { :error, changeset } ->
         render conn, :new, changeset: changeset
     end
